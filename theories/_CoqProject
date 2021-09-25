@@ -4,6 +4,7 @@
 COQDOCFLAGS = "--charset utf-8 -s --with-header ../website/resources/header.html --with-footer ../website/resources/footer.html --index indexpage"
 
 # coqdoc files
+test.v
 FOL/Reductions/H10UPC_to_FOL.v
 FOL/Reductions/H10UPC_to_FSAT.v
 FOL/Util/DoubleNegation.v
