@@ -22,3 +22,10 @@ Proof.
   apply (undecidability_from_reducibility iPCPb_undec).
   apply iPCPb_to_BSM_HALTING.
 Qed.
+
+Theorem BSM_compl_undec : mundecidable (complement BSM_HALTING).
+Proof. 
+  apply (mundecidability_from_reducibility iPCPb_compl_undec).
+  apply reduces_complement.
+  apply iPCPb_to_BSM_HALTING. 
+Qed.

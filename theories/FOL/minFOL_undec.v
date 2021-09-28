@@ -37,13 +37,15 @@ Section general.
     apply classicalProveReduction, LEM.
   Qed.
 
-  Lemma minSatisfiabilityReduc : (complement H10UPC_SAT) ⪯  (fun k : minimalForm falsity_on => satis k).
+  Lemma minSatisfiabilityUndec : mundecidable (fun k : minimalForm falsity_on => satis k).
   Proof.
+    apply (mundecidability_from_reducibility H10UPC_SAT_compl_undec).
     apply satisReduction.
   Qed.
 
-  Lemma minKripkeSatisfiabilityReduc : (complement H10UPC_SAT) ⪯  (fun k : minimalForm falsity_on => ksatis k).
+  Lemma minKripkeSatisfiabilityUndec : mundecidable (fun k : minimalForm falsity_on => ksatis k).
   Proof.
+    apply (mundecidability_from_reducibility H10UPC_SAT_compl_undec).
     apply kripkeSatisReduction.
   Qed.
   
@@ -72,15 +74,16 @@ Section finite.
     * eexists. apply frag_reduction_fsat.
   Qed.
 
-  Lemma minFiniteValidityReduction : (Definitions.complement H10UPC_SAT) ⪯ FVAL_frag.
+  Lemma minFiniteValidityUndec : mundecidable FVAL_frag.
   Proof.
+    apply (mundecidability_from_reducibility H10UPC_SAT_compl_undec).
     eapply reduces_transitive.
     * eexists. apply fval_reduction.
     * eexists. apply frag_reduction_fval.
   Qed.
 
   (** This is a conjecture *)
-  Lemma minFiniteValidityConjecture : (Definitions.complement H10UPC_SAT) ⪯ FVAL_frag_no_negation.
+  Lemma minFiniteValidityConjecture : mundecidable FVAL_frag_no_negation.
   Abort.
 
 End finite.

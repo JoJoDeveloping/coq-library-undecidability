@@ -17,3 +17,10 @@ Proof.
   apply (undecidability_from_reducibility H10UC_SAT_undec).
   exact H10UC_SAT_to_H10UPC_SAT.reduction.
 Qed.
+
+Theorem H10UPC_SAT_compl_undec : mundecidable (complement H10UPC_SAT).
+Proof.
+  apply (mundecidability_from_reducibility H10UC_SAT_compl_undec).
+  apply reduces_complement.
+  exact H10UC_SAT_to_H10UPC_SAT.reduction.
+Qed.

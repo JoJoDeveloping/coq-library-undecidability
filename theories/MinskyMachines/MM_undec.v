@@ -26,3 +26,10 @@ Proof.
   apply BSM_MM_HALTING.
 Qed.
 
+Lemma MM_HALTING_compl_undec : mundecidable (complement MM_HALTING).
+Proof. 
+  apply (mundecidability_from_reducibility BSM_compl_undec).
+  apply reduces_complement.
+  apply BSM_MM_HALTING.
+Qed.
+

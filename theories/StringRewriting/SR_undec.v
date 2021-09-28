@@ -12,6 +12,12 @@ Proof.
   apply (undecidability_from_reducibility HaltSBTMu_undec).
   apply HaltSBTMu_to_SRH.reduction.
 Qed.
+Lemma SRH_compl_undec : mundecidable (complement SRH).
+Proof. 
+  apply (mundecidability_from_reducibility HaltSBTMu_compl_undec).
+  apply reduces_complement.
+  apply HaltSBTMu_to_SRH.reduction. 
+Qed.
 
 Check SRH_undec.
 
@@ -19,6 +25,12 @@ Check SRH_undec.
 Lemma SR_undec : undecidable SR.
 Proof.
   apply (undecidability_from_reducibility SRH_undec).
+  exact SRH_to_SR.reduction.
+Qed.
+Lemma SR_compl_undec : mundecidable (complement SR).
+Proof. 
+  apply (mundecidability_from_reducibility SRH_compl_undec).
+  apply reduces_complement.
   exact SRH_to_SR.reduction.
 Qed.
 

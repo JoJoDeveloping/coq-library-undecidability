@@ -24,6 +24,14 @@ Section Properties.
     intro; rewrite Hf, Hg; tauto.
   Qed.
 
+  Fact reduces_complement : P ⪯ Q -> complement P ⪯ complement Q.
+  Proof.
+    unfold reduces, reduction.
+    intros (f & Hf).
+    exists f.
+    intros x; split; specialize (Hf x); unfold complement; tauto.
+  Qed.
+
   (* ** An equivalent dependent definition *)
 
   Fact reduces_dependent :
