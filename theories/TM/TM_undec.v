@@ -11,6 +11,12 @@ Proof.
   intros d. exact d.
 Qed.
 
+Lemma HaltTM_1_compl_undec :
+  mundecidable (complement (HaltTM 1)).
+Proof.
+  apply mundecidability_HaltTM_compl.
+Qed.
+
 Lemma HaltMTM_undec :
   undecidable HaltMTM.
 Proof.

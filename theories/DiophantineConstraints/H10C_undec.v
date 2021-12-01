@@ -47,3 +47,32 @@ Proof.
   apply (undecidability_from_reducibility H10SQC_SAT_undec).
   exact H10SQC_SAT_to_H10UC_SAT.reduction.
 Qed.
+
+
+
+
+(* Undecidability of Diophantine Constraint Solvability *)
+Theorem H10C_SAT_compl_undec : mundecidable (complement H10C_SAT).
+Proof. 
+  apply (mundecidability_from_reducibility FRACTRAN_compl_undec).
+  apply reduces_complement.
+  apply (reduces_transitive FRACTRAN_DIO.FRACTRAN_HALTING_DIO_LOGIC_SAT).
+  apply (reduces_transitive FRACTRAN_DIO.DIO_LOGIC_ELEM_SAT).
+  exact FRACTRAN_to_H10C_SAT.DIO_ELEM_H10C_SAT.
+Qed.
+
+(* Undecidability of Square Diophantine Constraint Solvability *)
+Theorem H10SQC_SAT_compl_undec : mundecidable (complement H10SQC_SAT).
+Proof.
+  apply (mundecidability_from_reducibility H10C_SAT_compl_undec).
+  apply reduces_complement.
+  exact H10C_SAT_to_H10SQC_SAT.reduction.
+Qed.
+
+(* Undecidability of Uniform Diophantine Constraint Solvability *)
+Theorem H10UC_SAT_compl_undec : mundecidable (complement H10UC_SAT).
+Proof.
+  apply (mundecidability_from_reducibility H10SQC_SAT_compl_undec).
+  apply reduces_complement.
+  exact H10SQC_SAT_to_H10UC_SAT.reduction.
+Qed.

@@ -4,6 +4,10 @@
 COQDOCFLAGS = "--charset utf-8 -s --with-header ../website/resources/header.html --with-footer ../website/resources/footer.html --index indexpage"
 
 # coqdoc files
+FOL/Reductions/H10UPC_to_FOL.v
+FOL/Reductions/H10UPC_to_FSAT.v
+FOL/Util/DoubleNegation.v
+FOL/minFOL_undec.v
 
 PCP/PCP.v
 PCP/Reductions/HaltTM_1_to_PCP.v
@@ -18,6 +22,9 @@ FRACTRAN/FRACTRAN_undec.v
 
 DiophantineConstraints/H10C.v
 DiophantineConstraints/H10C_undec.v
+DiophantineConstraints/H10UPC.v
+DiophantineConstraints/Util/H10UPC_facts.v
+DiophantineConstraints/H10UPC_undec.v
 
 CounterMachines/CM1.v
 CounterMachines/Reductions/HaltTM_1_to_CM1_HALT.v
@@ -228,6 +235,8 @@ FOL/PA_undec.v
 FOL/FSAT.v
 FOL/FSAT_undec.v
 
+#FOL/Minimal/MinFOL.v
+
 FOL/Util/Syntax.v
 FOL/Util/Syntax_facts.v
 FOL/Util/Tarski.v
@@ -243,6 +252,7 @@ FOL/Util/Aczel_TD.v
 FOL/Util/ZF_model.v
 FOL/Util/FA_facts.v
 FOL/Util/sig_bin.v
+FOL/Util/Hoas.v
 
 FOL/Reductions/PCPb_to_FOL.v
 FOL/Reductions/PCPb_to_FOL_intu.v
@@ -254,6 +264,7 @@ FOL/Reductions/PCPb_to_minZFeq.v
 FOL/Reductions/PCPb_to_binZF.v
 FOL/Reductions/PCPb_to_ZFeq.v
 FOL/Reductions/H10p_to_FA.v
+FOL/Reductions/H10UPC_to_FOL_minimal.v
 
 FOL/Reductions/FSATd_to_FSATdc.v
 FOL/Reductions/TRAKHTENBROT_to_FSAT.v
@@ -768,6 +779,7 @@ DiophantineConstraints/Util/h10c_utils.v
 DiophantineConstraints/Reductions/FRACTRAN_to_H10C_SAT.v
 DiophantineConstraints/Reductions/H10C_SAT_to_H10SQC_SAT.v
 DiophantineConstraints/Reductions/H10SQC_SAT_to_H10UC_SAT.v
+DiophantineConstraints/Reductions/H10UC_SAT_to_H10UPC_SAT.v
 
 SetConstraints/Util/Facts.v
 SetConstraints/Util/mset_eq_utils.v

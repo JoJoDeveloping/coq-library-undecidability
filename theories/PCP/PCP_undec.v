@@ -14,6 +14,13 @@ Proof.
   apply (undecidability_from_reducibility SR_undec.SR_undec).
   exact SR_to_MPCP.reduction.
 Qed.
+Lemma MPCP_compl_undec : mundecidable (complement MPCP).
+Proof. (*
+  apply (mundecidability_from_reducibility SR_undec.SR_compl_undec).
+  apply reduces_complement.
+  exact SR_to_MPCP.reduction.
+Qed.*)
+Admitted.
 
 Check MPCP_undec.
 
@@ -32,6 +39,12 @@ Proof.
   apply (undecidability_from_reducibility MPCP_undec).
   exact MPCP_to_PCP.reduction.
 Qed.
+Lemma PCP_compl_undec : mundecidable (complement PCP).
+Proof.
+  apply (mundecidability_from_reducibility MPCP_compl_undec).
+  apply reduces_complement.
+  exact MPCP_to_PCP.reduction.
+Qed.
 
 Check PCP_undec.
 
@@ -41,6 +54,12 @@ Proof.
   apply (undecidability_from_reducibility PCP_undec).
   exact PCP_to_PCPb.reduction.
 Qed.
+Lemma PCPb_compl_undec : mundecidable (complement PCPb).
+Proof.
+  apply (mundecidability_from_reducibility PCP_compl_undec).
+  apply reduces_complement.
+  exact PCP_to_PCPb.reduction.
+Qed.
 
 Check PCPb_undec.
 
@@ -48,6 +67,14 @@ Check PCPb_undec.
 Lemma iPCPb_undec : undecidable iPCPb.
 Proof.
   apply (undecidability_from_reducibility PCPb_undec).
+  exists id. exact PCPb_iff_iPCPb.PCPb_iff_iPCPb.
+Qed.
+
+(* Complement reduction. *)
+Lemma iPCPb_compl_undec : mundecidable (complement iPCPb).
+Proof.
+  apply (mundecidability_from_reducibility PCPb_compl_undec).
+  apply reduces_complement.
   exists id. exact PCPb_iff_iPCPb.PCPb_iff_iPCPb.
 Qed.
 
