@@ -7,12 +7,28 @@ From Undecidability.Synthetic Require Import Definitions Undecidability Reducibi
 
 Set Default Proof Using "Type".
 
+(** * Validity, provability, satisfiability of dyadic first-order logic *)
+
+(* 
+  Problems(s):
+    Dyadic validity
+    Dyadic satisfiability
+    Dyadic provability
+    Dyadic classical provability
+    Dyadic Kripke validity
+    Dyadic Kripke satisfiability
+    Dyadic finite validity
+    Dyadic finite satisfiability
+
+  All for a small logical fragment
+*)
+
 Definition minimalForm (ff:falsity_flag) := @form sig_empty sig_binary FragmentSyntax.frag_operators ff.
 
 
 Section full_fragment.
   Import H10UPC_to_FOL_full_fragment FullTarski.
-
+  (** ** Dyadic validity, large fragment *)
   Lemma minSignatureValiditiyUndec : @undecidable (@form sig_empty sig_binary FullSyntax.full_operators falsity_on) valid.
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_undec).
@@ -23,12 +39,14 @@ End full_fragment.
 Section general.
   Import H10UPC_to_FOL_minimal Tarski Deduction Kripke.
 
+  (** ** Dyadic validity, small fragment without negation *)
   Lemma minValidityUndec : undecidable (fun k : minimalForm falsity_off => valid k).
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_undec).
     exact validReduction.
   Qed.
 
+  (** ** Dyadic Kripke validity, small fragment without negation *)
   Lemma minKripkeValidityUndec : undecidable (fun k : minimalForm falsity_off => kvalid k).
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_undec).
@@ -38,24 +56,28 @@ Section general.
   Definition int_provable (phi : minimalForm falsity_off) : Prop := nil ⊢M phi.
   Definition class_provable (phi : minimalForm falsity_off) : Prop := nil ⊢C phi.
 
+  (** ** Dyadic int. provability, small fragment without negation *)
   Lemma minProvabilityUndec : undecidable int_provable.
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_undec).
     exact proveReduction.
   Qed.
 
+  (** ** Dyadic classical provability, small fragment without negation *)
   Lemma minClassicalProvabilityUndec (LEM : forall P:Prop, P \/ ~P) : undecidable class_provable.
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_undec).
     apply classicalProveReduction, LEM.
   Qed.
 
+  (** ** Dyadic satisfiability, small fragment with negation *)
   Lemma minSatisfiabilityUndec : undecidable (fun k : minimalForm falsity_on => satis k).
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_compl_undec).
     apply satisReduction.
   Qed.
 
+  (** ** Dyadic Kripke satisfiability, small fragment with negation *)
   Lemma minKripkeSatisfiabilityUndec : undecidable (fun k : minimalForm falsity_on => ksatis k).
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_compl_undec).
@@ -79,6 +101,7 @@ Section finite.
   Definition FVAL_frag_no_negation (phi : minimalForm falsity_off) :=
   forall D (I : Tarski.interp D) rho, FSAT.listable D /\ decidable (fun v => Tarski.i_atom (P:=tt) v) -> @Tarski.sat _ _ D I _ rho phi.
 
+  (** ** Dyadic finite satisfiability, small fragment with negation *)
   Lemma minFiniteSatisfiabilityUndec : undecidable FSAT_frag.
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_undec).
@@ -87,6 +110,7 @@ Section finite.
     * eexists. apply frag_reduction_fsat.
   Qed.
 
+  (** ** Dyadic finite validity, small fragment with negation *)
   Lemma minFiniteValidityUndec : undecidable FVAL_frag.
   Proof.
     apply (undecidability_from_reducibility H10UPC_SAT_compl_undec).
