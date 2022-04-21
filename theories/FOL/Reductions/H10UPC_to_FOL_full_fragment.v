@@ -15,10 +15,21 @@ Require Import Undecidability.Synthetic.Definitions Undecidability.Synthetic.Und
 Idea: The relation (#&#35;#) has the following properties:#<ul>#
 #<li>#n ~ p: n is left component of p#</li>#
 #<li>#p ~ n: p is right component of p#</li>#
-#<li>#p ~ p: the special relationship of H10UPC#</li>#
-#<li>#n ~ m: n = m. Special case n=0, m=1: #<br />#
-          The instance h10 of H10UPC is a yes-instance. #<br />#
-          This is to facilitate Friedman translation#</li>#
+#<li>#p ~ p: the special relation H10UPC#</li>#
+#<li>#n ~ m: n = m. #</li></ul>#
+
+Translation mapping:
+ #<table><tr><td>Coq</td><td>Paper</td></tr>
+         <tr><td>H10UPC</td><td>UDPC</td></tr>
+         <tr><td>H10UC</td><td>UDC</td></tr>
+         <tr><td>form</td><td>mathbb F</td></tr>
+         <tr><td>Pr</td><td>rotated double tilde</td></tr>
+         <tr><td>i_Pr</td><td>rotated double tilde, but in a model</td></tr>
+         <tr><td>IB</td><td>mathcal M, the standard model</td></tr>
+         <tr><td>emplace_exists</td><td>big exists, the iterated quantifier</td></tr>
+         <tr><td>translate_rec</td><td>code</td></tr>
+</table>#
+
 *)
 
 

@@ -20,9 +20,25 @@ Set Default Proof Using "Type".
     Dyadic finite validity
     Dyadic finite satisfiability
 
-  All for a small logical fragment
+  All for a small logical fragment.
 *)
 
+(**
+
+ The notation used throughout this file differs from the one presented in "Undecidability of Dyadic First-Order Logic in Coq" by Hostert et al (ITP 2022).
+ The following table translates the most important differences.
+ Individual reductions contain their own tables, if necessary.
+
+ #<table><tr><td>Coq</td><td>Paper</td></tr>
+         <tr><td>H10UPC</td><td>UDPC</td></tr>
+         <tr><td>H10UC</td><td>UDC</td></tr>
+         <tr><td>form</td><td>mathbb F</td></tr>
+         <tr><td>Pr</td><td>rotated double tilde</td></tr>
+</table>#
+
+ 
+
+*)
 Definition minimalForm (ff:falsity_flag) := @form sig_empty sig_binary FragmentSyntax.frag_operators ff.
 
 

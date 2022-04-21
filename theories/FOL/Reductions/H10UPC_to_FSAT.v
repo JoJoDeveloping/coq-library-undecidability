@@ -21,8 +21,27 @@ Require Import Relation_Definitions.
 Idea: The relation (#&#35;#) has the following properties:#<ul>#
 #<li>#n ~ p: n is left component of p#</li>#
 #<li>#p ~ n: p is right component of p#</li>#
-#<li>#p ~ p: the special relationship of H10UPC#</li>#
-#<li>#n ~ m: n <= m. #</li>#
+#<li>#p ~ p: the special relation H10UPC#</li>#
+#<li>#n ~ m: n <= m. #</li></ul>#
+
+
+
+Translation mapping:
+ #<table><tr><td>Coq</td><td>Paper</td></tr>
+         <tr><td>H10UPC</td><td>UDPC</td></tr>
+         <tr><td>H10UC</td><td>UDC</td></tr>
+         <tr><td>form</td><td>mathbb F</td></tr>
+         <tr><td>Pr, &#35;</td><td>rotated double tilde</td></tr>
+         <tr><td>iPr, &#35;&#35;</td><td>rotated double tilde, but in a model</td></tr>
+         <tr><td>model</td><td>mathcal M, the standard model</td></tr>
+         <tr><td>emplace_exists</td><td>big exists, the iterated quantifier</td></tr>
+         <tr><td>rel</td><td>R</td></tr>
+         <tr><td>less</td><td>&lt;</td></tr>
+         <tr><td>leq</td><td>&le;</td></tr>
+         <tr><td>deq</td><td>&equiv; (first-order equivalence)</td></tr>
+         <tr><td>translate_list</td><td>code</td></tr>
+</table>#
+
 *)
 
 
@@ -96,19 +115,19 @@ Section Fsat.
   (** (#&dollar;#l,z)#&#35;#(#&dollar;#r,z) -- i.e. l+1 = r*)
   Definition succ l r z := rel l z r z.
 
-  (** Axiom 1: less is transitive *)
+  (** Axiom 5: less is transitive *)
   Definition aTrans := ∀∀∀ less 2 1 ~> less 1 0 ~> less 2 0.
-  (** Axiom 2: non-zero numbers have predecessors *)
+  (** Axiom 1: non-zero numbers have predecessors *)
   Definition aPred z:= ∀ N 0 ~> (¬(deq (S z) 0) ~> ∃ succ 0 1 (2+z)).
-  (** Axiom 3: being successors implies there is no number inbetween *)
+  (** Axiom 4: being successors implies there is no number inbetween *)
   Definition aSucc z:= ∀∀ N 1 ~> N 0 ~> rel 1 (2+z) 0 (2+z) ~> 
                         less 1 0 ∧ ∀ less 0 1 ~> leq 0 2.
-  (** Axiom 4: Strong axiom describing # relation on pairs (step) *)
+  (** Axiom 2: Strong axiom describing # relation on pairs (step) *)
   Definition aDescr z := ∀∀∀∀ N 3 ~> N 2 ~> N 1 ~> N 0
                            ~> (¬(deq (4+z) 2))
                            ~> rel 3 2 1 0
                        ~> ∃∃∃ succ 2 5 (7+z) ∧ succ 1 4 (7+z) ∧ rel 0 2 3 0 ∧ rel 6 2 1 0 ∧ less 0 3.
-  (** Axiom 5: Axiom describing # relation on pairs (tieback) *)
+  (** Axiom 3: Axiom describing # relation on pairs (tieback) *)
   Definition aDescr2 z := ∀∀∀∀ N 3 ~> N 2 ~> N 1 ~> N 0 ~> rel 3 2 1 0 ~> deq 2 (4+z) ~> deq 0 (4+z).
   (** This defines our reduction function *)
   Definition emplace_exists (n:nat) (f:form) := it (fun k => ∃ k) n f.
