@@ -110,7 +110,3 @@ Section comparisons.
     unfold PAle'. cbn. now asimpl.
   Qed.
 End comparisons.
-
-Notation "x '⧀' y"  := (PAlt x y) (at level 40) : PA_Notation.
-Notation "x '⧀=' y"  := (PAle x y) (at level 40) : PA_Notation.
-Notation "x '⧀='' y"  := (PAle' x y) (at level 40) : PA_Notation.
