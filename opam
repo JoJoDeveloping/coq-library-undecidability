@@ -27,7 +27,7 @@ install: [
 ]
 depends: [
   "coq" {= "9.0.0"}
-  "coq-metacoq-template" {= "9.0"}
+  "rocq-metarocq-template" {= "1.4+9.0" }
 ]
 
 synopsis: "A Coq Library of Undecidability Proofs"
